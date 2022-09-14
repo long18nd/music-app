@@ -4,7 +4,7 @@ import App from "./App";
 import "antd/dist/antd.less";
 import { Provider } from "react-redux";
 import { ConfigProvider } from "antd";
-import store from "@/store";
+import { store } from "@/store";
 
 ReactDOM.render(
     <React.StrictMode>
