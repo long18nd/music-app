@@ -1,9 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App";
+import "antd/dist/antd.less";
+import { Provider } from "react-redux";
+import { ConfigProvider } from "antd";
+import store from "@/store";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.render(
     <React.StrictMode>
-        <App />
-    </React.StrictMode>
+        <Provider store={store}>
+            <ConfigProvider autoInsertSpaceInButton={false}>
+                {/*<MessageDefinition />*/}
+                <App />
+            </ConfigProvider>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
