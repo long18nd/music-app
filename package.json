@@ -2,7 +2,6 @@
   "name": "music-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -32,7 +31,9 @@
     "slate-history": "^0.66.0",
     "tus-js-client": "^3.0.0-0",
     "usehooks-ts": "^2.6.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "vite-plugin-svgr": "^2.2.1",
+    "vitest": "^0.23.2"
   },
   "devDependencies": {
     "@honkhonk/vite-plugin-svgr": "^1.1.0",

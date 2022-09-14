@@ -13,8 +13,7 @@ const RouteComponentConfig: {
     public: { name: RouteName; component: any }[];
     private: { name: RouteName; component: any }[];
 } = {
-    public: [],
-    private: [
+    public: [
         { name: "DISCOVER", component: Discover },
         { name: "ZING_CHART", component: ZingChart },
         { name: "RADIO", component: Radio },
@@ -24,6 +23,8 @@ const RouteComponentConfig: {
         { name: "TOP_100", component: Top100 },
         { name: "MV", component: Mv },
         { name: "MY_MUSIC", component: MyMusic },
+    ],
+    private: [
     ],
 };
 

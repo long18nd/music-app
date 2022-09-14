@@ -1,46 +1,24 @@
-import SidebarConfigs, { SidebarConfigTypeCheck } from "@/configs/sidebar.config";
-import { Menu } from "antd";
-import SideMenuItem from "./SideMenuItem";
+import { Divider, Menu } from "antd";
 import { useEffect, useState } from "react";
 import RouteConfig from "@/configs/route.config";
+import SidebarConfigs, { SidebarConfigTypeCheck } from "@/configs/sidebar.config";
+import SideMenuItem from "@/components/layouts/side_menu/SideMenuItem";
 
 const SideMenu = () => {
-    const [selectedKeys, setSelectedKeys] = useState<any>([]);
-    const [openKeys, setOpenKeys] = useState<any>([]);
+    const [openKeys, setOpenKeys] = useState<Array<string>>([]);
 
     const menuStateByLocation = () => {
-        const tmpSelectedKeys = [];
-        const tmpOpenKeys = [];
+        const tmpOpenKeys: Array<string> = [];
 
         for (const name of Object.keys(SidebarConfigs)) {
             const sidebarConfig = SidebarConfigs[name];
-            if (SidebarConfigTypeCheck.isSidebarConfigSubMenu(sidebarConfig)) {
-                for (const childName of Object.keys(sidebarConfig.items)) {
-                    // special case for User Detail route
-                    // if (
-                    //     location.pathname.startsWith("/user") &&
-                    //     sidebarConfig.items[childName].route.path === RouteConfig.MANAGE_USER.path
-                    // ) {
-                    //     tmpSelectedKeys.push(childName);
-                    //     tmpOpenKeys.push(name);
-                    //     break;
-                    // }
-                    if (location.pathname === sidebarConfig.items[childName].route.path) {
-                        tmpSelectedKeys.push(childName);
-                        tmpOpenKeys.push(name);
-                        break;
-                    }
-                    if (tmpOpenKeys.length > 0) break;
-                }
-            }
             if (SidebarConfigTypeCheck.isSidebarConfigMenuItem(sidebarConfig)) {
                 if (location.pathname === sidebarConfig.route.path) {
-                    tmpSelectedKeys.push(name);
                     break;
                 }
             }
         }
-        return { tmpSelectedKeys, tmpOpenKeys };
+        return { tmpOpenKeys };
     };
 
     useEffect(() => {
@@ -50,24 +28,29 @@ const SideMenu = () => {
                 .includes(location.pathname) ||
             location.pathname.startsWith("/user")
         ) {
-            const { tmpSelectedKeys, tmpOpenKeys } = menuStateByLocation();
-            setSelectedKeys(tmpSelectedKeys);
+            const { tmpOpenKeys } = menuStateByLocation();
             setOpenKeys(tmpOpenKeys);
         }
     }, [location.pathname]);
 
     return (
-        <Menu
-            mode="inline"
-            theme="dark"
-            selectedKeys={selectedKeys}
-            openKeys={openKeys}
-            onOpenChange={(openKeys) => setOpenKeys(openKeys)}
-        >
-            {Object.keys(SidebarConfigs).map((name, index) => (
-                <SideMenuItem item={SidebarConfigs[name]} key={"sidebar-item-" + index} navKey={name} />
-            ))}
-        </Menu>
+        <div>
+            <Menu mode="inline" theme="dark" openKeys={openKeys} onOpenChange={(openKeys) => setOpenKeys(openKeys)}>
+                {Object.keys(SidebarConfigs).map((name, index) => {
+                    if (index <= 4) {
+                        return <SideMenuItem item={SidebarConfigs[name]} key={"sidebar-item-" + index} navKey={name} />;
+                    }
+                })}
+                <div className="pl-24 pr-24">
+                    <Divider style={{ background: "#ffffff" }} />
+                </div>
+                {Object.keys(SidebarConfigs).map((name, index) => {
+                    if (index > 4) {
+                        return <SideMenuItem item={SidebarConfigs[name]} key={"sidebar-item-" + index} navKey={name} />;
+                    }
+                })}
+            </Menu>
+        </div>
     );
 };
 

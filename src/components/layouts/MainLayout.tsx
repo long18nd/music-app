@@ -5,17 +5,21 @@ import { Route, Routes } from "react-router-dom";
 import RouteComponentConfig from "@/configs/route_component.config";
 import RouteConfig from "@/configs/route.config";
 import SideMenu from "@/components/layouts/side_menu/SideMenu";
+import LogoZingMp3Svg from "@/assets/icons/logo-dark.svg";
+import HeaderPage from "@/components/layouts/HeaderPage";
 
 const MainLayout = () => {
     return (
         <Layout style={{ minHeight: "100vh" }}>
             <Sider trigger={null} collapsible>
+                <div className="d-flex items-center p-24">
+                    <img className="h-32" src={LogoZingMp3Svg} />
+                </div>
                 <SideMenu />
-                Long
             </Sider>
             <Layout className="site-layout">
-                <Header className="site-layout-background" style={{ padding: 0 }}>
-                    {/*<HeadMenu isSidebarOpen={isSidebarOpen} onToggleSideBar={toggleSidebar} />*/}
+                <Header className="site-layout-background" style={{ padding: 0, background: "white" }}>
+                    <HeaderPage />
                 </Header>
                 <Content
                     className="site-layout-background"
@@ -28,11 +32,11 @@ const MainLayout = () => {
                             const Component = r.component;
                             return <Route key={r.name} path={RouteConfig[r.name].path} element={<Component />} />;
                         })}
-                        <Route path="*" element={<div>Not found</div>} />
                     </Routes>
                 </Content>
                 <Footer></Footer>
             </Layout>
+            <Sider>Play list</Sider>
         </Layout>
     );
 };

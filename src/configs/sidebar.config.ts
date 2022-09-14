@@ -1,10 +1,5 @@
 import RouteConfig, { RouteInfo } from "@/configs/route.config";
 
-export type SidebarConfigSubMenu = {
-    title: string;
-    items: { [key: string]: SidebarConfigMenuItem };
-    icon?: any;
-};
 
 export type SidebarConfigMenuItem = {
     route: RouteInfo;
@@ -13,46 +8,43 @@ export type SidebarConfigMenuItem = {
 };
 
 export const SidebarConfigTypeCheck = {
-    isSidebarConfigSubMenu(object: unknown): object is SidebarConfigSubMenu {
-        return typeof object === "object" && object != null && "items" in object;
-    },
     isSidebarConfigMenuItem(object: unknown): object is SidebarConfigMenuItem {
         return typeof object === "object" && object != null && "route" in object;
     },
 };
 
-const SidebarConfigs: { [key: string]: SidebarConfigSubMenu | SidebarConfigMenuItem } = {
+const SidebarConfigs: { [key: string]: SidebarConfigMenuItem } = {
     MY_MUSIC: {
         route: RouteConfig.MY_MUSIC,
-        customName: "MY_MUSIC",
+        customName: "Cá Nhân",
     },
     DISCOVER: {
         route: RouteConfig.DISCOVER,
-        customName: "DISCOVER",
+        customName: "Khám Phá",
     },
     ZING_CHART: {
         route: RouteConfig.ZING_CHART,
-        customName: "ZING_CHART",
+        customName: "#zingchart",
     },
     RADIO: {
         route: RouteConfig.RADIO,
-        customName: "RADIO",
+        customName: "Radio",
     },
     LIST_BY_GENRE: {
         route: RouteConfig.LIST_BY_GENRE,
-        customName: "LIST_BY_GENRE",
+        customName: "Theo Dõi",
     },
     NEW_SONGS: {
         route: RouteConfig.NEW_SONGS,
-        customName: "NEW_SONGS",
+        customName: "Nhạc Mới",
     },
     HUB: {
         route: RouteConfig.HUB,
-        customName: "HUB",
+        customName: "Thể Loại",
     },
     TOP_100: {
         route: RouteConfig.TOP_100,
-        customName: "TOP_100",
+        customName: "TOP 100",
     },
     MV: {
         route: RouteConfig.MV,

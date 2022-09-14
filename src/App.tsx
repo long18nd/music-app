@@ -8,7 +8,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                {RouteComponentConfig.public.map((r) => {
+                {RouteComponentConfig.private.map((r) => {
                     const Component = r.component;
                     return <Route key={r.name} path={RouteConfig[r.name].path} element={<Component />} />;
                 })}
