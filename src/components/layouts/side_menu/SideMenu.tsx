@@ -42,7 +42,7 @@ const SideMenu = () => {
                     }
                 })}
                 <div className="pl-24 pr-24">
-                    <Divider style={{ background: "#ffffff" }} />
+                    <Divider className="bg-gray-80" />
                 </div>
                 {Object.keys(SidebarConfigs).map((name, index) => {
                     if (index > 4) {
