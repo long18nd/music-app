@@ -1,9 +1,7 @@
-const viteBase = import.meta.env.VITE_API_BASE_URL;
+const viteBase = "http://localhost:8080/api";
 
 export const API = {
     BASE: viteBase,
 
-    AUTH_LOGIN: "/auth/login",
-    AUTH_CHECK: "auth/check",
-    AUTH_LOGOUT: "auth/logout",
+    DISCOVER: "/home",
 };
