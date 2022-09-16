@@ -9,6 +9,11 @@ import DiscoverArtistChannel from "@/pages/discover/discover_artist_channel/Disc
 import DiscoverMusicOnDay from "@/pages/discover/discover_music_on_day/DiscoverMusicOnDay";
 import DiscoverZingChart from "@/pages/discover/discover_zingchart/DiscoverZingChart";
 
+type DataPropsDiscover = {
+    title: string;
+    data: [];
+};
+
 const Discover = () => {
     const [data, setData] = useState<Array<any> | undefined>();
     // const [searchParams, setSearchParams] = useSearchParams();
@@ -19,13 +24,23 @@ const Discover = () => {
             setData(await getHomePlayList());
         })();
     }, []);
-    let dataPlayList = [];
+
+    let dataPlayList: DataPropsDiscover = { data: [], title: "" };
+    let dataArtisChannel: DataPropsDiscover = { data: [], title: "" };
 
     if (data) {
         for (let i = 0; i < data.length; i++) {
             if (data[i].sectionType == "playlist" && data[i].sectionId == "hAutoTheme1") {
-                const value = data[i].items;
-                dataPlayList = value;
+                const valuePlayList: DataPropsDiscover = { data: [], title: "" };
+                valuePlayList.data = data[i].items;
+                valuePlayList.title = data[i].title;
+                dataPlayList = valuePlayList;
+            }
+            if (data[i].sectionType == "mix" && data[i].sectionId == "hMix") {
+                const valuePlayList: DataPropsDiscover = { data: [], title: "" };
+                valuePlayList.data = data[i].items;
+                valuePlayList.title = data[i].title;
+                dataArtisChannel = valuePlayList;
             }
         }
     }
@@ -36,7 +51,7 @@ const Discover = () => {
                 <DiscoverGallery />
                 <DiscoverNewRelease />
                 <DiscoverPlaylist data={dataPlayList} />
-                <DiscoverArtistChannel />
+                <DiscoverArtistChannel data={dataArtisChannel} />
                 <DiscoverMusicOnDay />
                 <DiscoverZingChart />
             </div>

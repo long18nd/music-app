@@ -27,7 +27,7 @@ export const { useDiscoverQuery } = discoverApi;
 const getHomePlayList = async () => {
     try {
         const data: dataType = await axios.get("/home");
-        return data.items.filter((e: dataType) => e.sectionType === "playlist");
+        return data.items;
     } catch (err) {
         console.log(err);
     }

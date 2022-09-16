@@ -10,11 +10,11 @@ const PlayListItems = ({ link, thumbnail, title, sortDescription }: Props) => {
     const [isCoverHover, setCoverHover] = useState(false);
     const navigate = useNavigate();
     return (
-        <div>
-            <div className="">
+        <div style={{ maxHeight: "282px", maxWidth: "238px" }}>
+            <div>
                 <div onClick={() => navigate(link)}>
                     <img
-                        className="w100p cursor-pointer"
+                        className="cursor-pointer w100p"
                         src={thumbnail}
                         alt={title}
                         onMouseOver={() => {
@@ -54,7 +54,7 @@ const PlayListItems = ({ link, thumbnail, title, sortDescription }: Props) => {
                         textOverflow: "ellipsis",
                     }}
                 >
-                    <span>{sortDescription}</span>
+                    {sortDescription}
                 </div>
             </div>
         </div>

@@ -26,16 +26,11 @@ const MainLayout = () => {
                     </div>
                 </div>
             </Sider>
-            <Layout className="site-layout">
-                <Header className="site-layout-background" style={{ padding: 0, background: "white" }}>
+            <Layout>
+                <Header>
                     <HeaderPage />
                 </Header>
-                <Content
-                    className="site-layout-background"
-                    style={{
-                        padding: 30,
-                    }}
-                >
+                <Content>
                     <Routes>
                         {RouteComponentConfig.public.map((r) => {
                             const Component = r.component;

@@ -5,25 +5,28 @@ type Props = {
     data: any;
 };
 const DiscoverPlaylist = ({ data }: Props) => {
-    console.log(data);
     return (
-        <Row>
-            <div className="d-flex flex-direction-row pl-48 pr-48">
-                {data &&
-                    data.map((e: any) => {
-                        return (
-                            <Col span={4}>
-                                <PlayListItems
-                                    link={e.link}
-                                    thumbnail={e.thumbnail}
-                                    title={e.title}
-                                    sortDescription={e.sortDescription}
-                                />
-                            </Col>
-                        );
-                    })}
-            </div>
-        </Row>
+        <div className="pl-36 pr-36">
+            <Row className="fs-20 fw-700 lh-30 text-black pl-12">{data.title}</Row>
+            <Row>
+                <div className="d-flex flex-direction-row">
+                    {data &&
+                        data.data &&
+                        data.data.map((e: any) => {
+                            return (
+                                <Col span={5} className="pl-16 pr-16">
+                                    <PlayListItems
+                                        link={e.link}
+                                        thumbnail={e.thumbnail}
+                                        title={e.title}
+                                        sortDescription={e.sortDescription}
+                                    />
+                                </Col>
+                            );
+                        })}
+                </div>
+            </Row>
+        </div>
     );
 };
 
