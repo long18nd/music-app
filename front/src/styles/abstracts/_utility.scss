@@ -353,7 +353,7 @@ $borderStyles: ("dotted", "dashed", "solid", "double", "groove", "ridge", "inset
 }
 
 // Font weight
-$fontWeights: (400, 500, 700);
+$fontWeights: (400, 500, 700, 800);
 @each $fontWeight in $fontWeights {
     .fw-#{$fontWeight} {
         font-weight: #{$fontWeight} !important;
@@ -400,5 +400,39 @@ $letterSpacing: (1, 2, 3, 4, 5);
 @each $letterSpacing in $letterSpacing {
     .lh-#{$letterSpacing} {
         letter-spacing: #{$letterSpacing}px !important;
+    }
+}
+
+.transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+$i: 0;
+@while $i <= 100 {
+    .transform-scale-#{$i} {
+        transform: scale($i / 100) !important;
+    }
+    .filter-blur-#{$i} {
+        filter: blur(#{$i}px);
+        background-size: cover;
+    }
+    $i: $i + 1;
+}
+
+//transitionDuration
+$times: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+@each $time in $times {
+    .transition-duration-#{$time} {
+        transition-duration: #{$time}ms !important;
+    }
+}
+
+//bg-size
+$bgSizes: ("auto", "contain", "cover", "inherit", "initial", "revert");
+@each $bgSize in $bgSizes {
+    .bg-size-#{$bgSize} {
+        background-size: #{$bgSize} !important;
     }
 }

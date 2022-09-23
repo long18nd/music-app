@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import PlayIcon from "@/components/icons/PlayIcon";
+import AddLibraryIcon from "@/components/icons/AddLibraryIcon";
+import ThreeDotsIcon from "@/components/icons/ThreeDots";
 type Props = {
     link: string;
     thumbnail: string;
@@ -7,39 +10,37 @@ type Props = {
     sortDescription: string;
 };
 const PlayListItems = ({ link, thumbnail, title, sortDescription }: Props) => {
-    const [isCoverHover, setCoverHover] = useState(false);
     const navigate = useNavigate();
+
+    const [isCoverHover, setIsCoverHover] = useState<boolean>(false);
+
     return (
         <div style={{ maxHeight: "282px", maxWidth: "238px" }}>
-            <div>
-                <div onClick={() => navigate(link)}>
-                    <img
-                        className="cursor-pointer w100p"
-                        src={thumbnail}
-                        alt={title}
-                        onMouseOver={() => {
-                            setCoverHover(true);
-                        }}
-                        onMouseOut={() => {
-                            setCoverHover(false);
-                        }}
-                    />
+            <div className="avatar-container bg-gray-70 position-relative">
+                <img
+                    className={`cursor-pointer w100p ${
+                        isCoverHover ? "transform-scale-85 filter-blur-4 transition-duration-100" : ""
+                    }`}
+                    src={thumbnail}
+                    alt={title}
+                />
+                <div
+                    onMouseOver={() => {
+                        setIsCoverHover(true);
+                    }}
+                    onMouseOut={() => {
+                        setIsCoverHover(false);
+                    }}
+                    className="avatar-overlay d-none bg-gray-100 opacity-80 position-absolute cursor-pointer items-center justify-space-around"
+                >
+                    <AddLibraryIcon size={32} className="cursor-pointer" />
+                    <PlayIcon size={32} className="cursor-pointer" />
+                    <ThreeDotsIcon size={32} className="cursor-pointer" />
                 </div>
-
-                {/*<div*/}
-                {/*    //           className={`absolute top-3 w-full h-full z-[-1] bg-cover rounded-xl blur-lg scale-95 transition-opacity duration-300 ${*/}
-                {/*    //               isCoverHover === false ? "opacity-0" : "opacity-100"*/}
-                {/*    //           }*/}
-                {/*    // `}*/}
-                {/*    // className={isCoverHover === false ? "opacity-0" : "opacity-100"}*/}
-                {/*    style={{*/}
-                {/*        backgroundImage: `url(${thumbnail})`,*/}
-                {/*    }}*/}
-                {/*/>*/}
             </div>
 
             <div>
-                <div className="text-black fs-14 fw-700">
+                <div className="text-black fs-14 fw-700 text-purple-100-hover cursor-pointer">
                     <div onClick={() => navigate(link)}>{title}</div>
                 </div>
 

@@ -1,0 +1,16 @@
+.discover_playlist {
+    .avatar-container {
+        .avatar-overlay {
+            top: 0;
+            background: white;
+        }
+        &:hover {
+            .avatar-overlay {
+                display: flex !important;
+                background: #222222 !important;
+                height: 100% !important;
+                width: 100% !important;
+            }
+        }
+    }
+}

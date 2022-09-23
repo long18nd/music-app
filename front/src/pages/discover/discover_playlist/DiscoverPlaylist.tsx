@@ -1,12 +1,13 @@
 import PlayListItems from "@/pages/discover/discover_playlist/PlayListItems";
 import { Col, Row } from "antd";
+import "./index.scss";
 
 type Props = {
     data: any;
 };
 const DiscoverPlaylist = ({ data }: Props) => {
     return (
-        <div className="pl-36 pr-36">
+        <div className="discover_playlist pl-36 pr-36">
             <Row className="fs-20 fw-700 lh-30 text-black pl-12">{data.title}</Row>
             <Row>
                 <div className="d-flex flex-direction-row">
