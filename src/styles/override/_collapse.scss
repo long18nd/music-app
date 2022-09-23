@@ -1,9 +1,0 @@
-@import "../abstracts/vairable";
-
-.ant-collapse-content.ant-collapse-content-active,
-.ant-motion-collapse-leave {
-    background-color: map-get($colors, white) !important;
-    .ant-collapse-content-box {
-        padding: 0 !important;
-    }
-}
